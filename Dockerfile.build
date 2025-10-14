@@ -1,0 +1,14 @@
+FROM eclipse-temurin:21.0.8_9-jdk as builder
+RUN apt update && apt install -y dos2unix
+WORKDIR /app
+COPY .mvn mvnw pom.xml ./
+COPY .mvn .mvn
+RUN chmod +x mvnw && dos2unix mvnw
+RUN ./mvnw dependency:go-offline
+COPY src ./src
+RUN ./mvnw clean package
+
+FROM eclipse-temurin:21.0.8_9-jdk
+WORKDIR /app
+COPY --from=builder /app/target/employees-1.0.2.jar employees.jar
+CMD ["java", "-jar", "employees.jar"]
