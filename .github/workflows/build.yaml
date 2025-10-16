@@ -107,7 +107,7 @@ jobs:
           context: .
           file: Dockerfile.layers
           push: true
-          tags: "ghcr.io/wantiano/employees:latest,ghcr.io/wantiano/employees:${{ env.VERSION }}"
+          tags: "ghcr.io/wantiano/employees:latest,ghcr.io/wantiano/employees:$VERSION"
 
   deploy:
     runs-on: ubuntu-latest
