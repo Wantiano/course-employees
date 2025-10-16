@@ -94,7 +94,7 @@ jobs:
           context: .
           file: Dockerfile.layers
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/wantiano/employees:latest
 
   deploy:
     runs-on: ubuntu-latest
